@@ -39,7 +39,7 @@ export async function PATCH(
     if (typeof isPopular === "boolean") updateData.isPopular = isPopular;
     if (typeof isActive === "boolean") updateData.isActive = isActive;
 
-    const updated = await prisma.$transaction(async (tx) => {
+    const updated = await prisma.$transaction(async (tx: any) => {
       const plan = await tx.pricingPlan.update({
         where: { id },
         data: updateData,

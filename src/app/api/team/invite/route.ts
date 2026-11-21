@@ -65,7 +65,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const createdInvites = [];
+    const createdInvites: any[] = [];
     for (const em of targetEmails) {
       const token = crypto.randomBytes(24).toString("hex");
       const expiresAt = new Date(Date.now() + 7 * 24 * 3600 * 1000); // 7 days

@@ -41,7 +41,7 @@ async function handleSync(req: Request) {
       take: 10,
     });
 
-    const accountSyncResults = [];
+    const accountSyncResults: any[] = [];
     const { syncAccountData } = await import("@/lib/social/sync-engine");
     for (const acc of staleAccounts) {
       const res = await syncAccountData({

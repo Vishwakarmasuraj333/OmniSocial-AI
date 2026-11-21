@@ -92,7 +92,7 @@ export async function PATCH(
     }
 
     // Execute update in transaction
-    const updatedUser = await prisma.$transaction(async (tx) => {
+    const updatedUser = await prisma.$transaction(async (tx: any) => {
       const user = await tx.user.update({
         where: { id },
         data: updateData,
@@ -171,7 +171,7 @@ export async function DELETE(
       return NextResponse.json({ error: "User not found." }, { status: 404 });
     }
 
-    await prisma.$transaction(async (tx) => {
+    await prisma.$transaction(async (tx: any) => {
       // Record audit log prior to cascade deletion
       await tx.auditLog.create({
         data: {

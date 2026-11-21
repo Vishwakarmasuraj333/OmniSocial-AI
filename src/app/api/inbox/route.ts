@@ -121,8 +121,8 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Message content cannot be empty" }, { status: 400 });
     }
 
-    let conversation = null;
-    let account = null;
+    let conversation: any = null;
+    let account: any = null;
 
     if (conversationId) {
       conversation = await prisma.socialConversation.findFirst({

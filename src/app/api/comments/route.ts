@@ -183,7 +183,7 @@ export async function POST(req: Request) {
     }
 
     // Resolve post and target if postId is given
-    let resolvedPost = null;
+    let resolvedPost: any = null;
     let targetPostId = externalPostId;
     let targetAccountId = socialAccountId;
     let resolvedPlatform = platform;

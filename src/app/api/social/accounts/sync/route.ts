@@ -87,7 +87,7 @@ export async function POST(req: Request) {
       });
     }
 
-    const results = [];
+    const results: any[] = [];
     for (const acc of accounts) {
       const res = await syncAccountData({
         socialAccountId: acc.id,

@@ -105,7 +105,7 @@ export async function PATCH(
       updateData.timezone = timezone.trim();
     }
 
-    const updated = await prisma.$transaction(async (tx) => {
+    const updated = await prisma.$transaction(async (tx: any) => {
       const org = await tx.organization.update({
         where: { id },
         data: updateData,
@@ -159,7 +159,7 @@ export async function DELETE(
       return NextResponse.json({ error: "Organization not found." }, { status: 404 });
     }
 
-    await prisma.$transaction(async (tx) => {
+    await prisma.$transaction(async (tx: any) => {
       await tx.auditLog.create({
         data: {
           userId: auth.session?.id,

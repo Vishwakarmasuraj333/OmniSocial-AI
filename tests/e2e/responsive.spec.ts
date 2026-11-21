@@ -5,7 +5,7 @@ const ROUTES = ["/", "/features", "/platforms", "/solutions", "/pricing", "/cont
 test.describe("Responsive Audit Tests (All Viewports)", () => {
   for (const route of ROUTES) {
     test(`Zero horizontal overflow on ${route}`, async ({ page }) => {
-      await page.goto(route, { waitUntil: "networkidle" });
+      await page.goto(route, { waitUntil: "domcontentloaded" });
       await page.waitForTimeout(200);
 
       const hasHorizontalScroll = await page.evaluate(() => {
@@ -17,7 +17,7 @@ test.describe("Responsive Audit Tests (All Viewports)", () => {
   }
 
   test("PS floating widget is hidden on mobile & tablet, visible only on 2xl screens", async ({ page }) => {
-    await page.goto("/", { waitUntil: "networkidle" });
+    await page.goto("/", { waitUntil: "domcontentloaded" });
 
     const viewport = page.viewportSize();
     const psWidget = page.locator('[data-testid="ps-floating-widget"], aside[aria-label="Quick Actions"]');
@@ -34,7 +34,7 @@ test.describe("Responsive Audit Tests (All Viewports)", () => {
   test("Mobile navigation drawer opens when hamburger is clicked on iPhone", async ({ page }) => {
     const viewport = page.viewportSize();
     if (viewport && viewport.width <= 768) {
-      await page.goto("/", { waitUntil: "networkidle" });
+      await page.goto("/", { waitUntil: "domcontentloaded" });
 
       const menuBtn = page.locator('button[aria-label="Toggle mobile menu"]');
       if (await menuBtn.isVisible()) {

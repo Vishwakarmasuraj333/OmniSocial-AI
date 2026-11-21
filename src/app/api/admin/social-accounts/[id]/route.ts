@@ -24,7 +24,7 @@ export async function PATCH(
       return NextResponse.json({ error: "Invalid status value." }, { status: 400 });
     }
 
-    const updated = await prisma.$transaction(async (tx) => {
+    const updated = await prisma.$transaction(async (tx: any) => {
       const acc = await tx.socialAccount.update({
         where: { id },
         data: { status },
@@ -78,7 +78,7 @@ export async function DELETE(
       return NextResponse.json({ error: "Social account not found." }, { status: 404 });
     }
 
-    await prisma.$transaction(async (tx) => {
+    await prisma.$transaction(async (tx: any) => {
       await tx.auditLog.create({
         data: {
           userId: auth.session?.id,

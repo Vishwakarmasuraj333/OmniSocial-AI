@@ -105,7 +105,7 @@ export async function POST(req: NextRequest) {
     const userPart = email || session?.email ? ` (By: ${email || session?.email})` : "";
     const formattedMessage = `${categoryPart}${titlePart}${trimmedDesc || trimmedSubject}${attachPart}${userPart}`;
 
-    let feedbackRecord = null;
+    let feedbackRecord: any = null;
     try {
       feedbackRecord = await prisma.feedback.create({
         data: {

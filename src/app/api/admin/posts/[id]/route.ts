@@ -93,7 +93,7 @@ export async function PATCH(
       updateData.scheduledFor = new Date(scheduledFor);
     }
 
-    const updated = await prisma.$transaction(async (tx) => {
+    const updated = await prisma.$transaction(async (tx: any) => {
       const p = await tx.socialPost.update({
         where: { id },
         data: updateData,
@@ -147,7 +147,7 @@ export async function DELETE(
       return NextResponse.json({ error: "Post not found." }, { status: 404 });
     }
 
-    await prisma.$transaction(async (tx) => {
+    await prisma.$transaction(async (tx: any) => {
       await tx.auditLog.create({
         data: {
           userId: auth.session?.id,

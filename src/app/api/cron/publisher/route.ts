@@ -61,7 +61,7 @@ async function handleScheduleExecution(req: Request) {
       });
     }
 
-    const results = [];
+    const results: any[] = [];
 
     for (const schedule of pendingSchedules) {
       const post = schedule.post;

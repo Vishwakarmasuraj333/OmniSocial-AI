@@ -101,7 +101,7 @@ export async function POST(req: Request) {
       if (!orgId) {
         const brandName = user.name ? `${user.name}'s Brand` : "My Brand";
         const baseSlug = user.email.split("@")[0].replace(/[^a-z0-9]/gi, "-").toLowerCase();
-        let newOrg = null;
+        let newOrg: any = null;
 
         for (let attempt = 0; attempt < 5; attempt++) {
           const nonce = crypto.randomBytes(4).toString("hex");

@@ -37,7 +37,7 @@ export async function GET(req?: Request) {
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    let session = null;
+    let session: any = null;
     try {
       session = await getSession();
     } catch {}
@@ -125,7 +125,7 @@ export async function POST(req: Request) {
 
 export async function DELETE(req?: Request) {
   try {
-    let session = null;
+    let session: any = null;
     try {
       session = await getSession();
     } catch {}
