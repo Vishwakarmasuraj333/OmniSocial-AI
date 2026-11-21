@@ -4,100 +4,105 @@
 
 @layer base {
   :root {
-    /* PulseSocial Design Tokens - Signature Royal Purple (Light Mode) */
-    --brand-emerald: #5846A8;
-    --brand-purple: #5846A8;
-    --brand-purple-hover: #48388d;
-    --brand-purple-light: #F5F3FF;
-    --brand-purple-border: rgba(88, 70, 168, 0.25);
+    /* OmniSocial AI Design Tokens - Emerald & Teal (Light Mode) */
+    --brand-emerald: #059669;
+    --brand-emerald-hover: #047857;
+    --brand-teal: #0D9488;
+    --brand-coral: #F43F5E;
+    --brand-coral-hover: #E11D48;
 
-    --primary-purple: #5846A8;
-    --primary-purple-hover: #48388d;
-    --primary-purple-deep: #3F2B7B;
-    --primary-purple-dark: #2A185A;
-    --primary-purple-soft: rgba(88, 70, 168, 0.12);
-    --primary-purple-light: #F5F3FF;
-    --border-purple: rgba(88, 70, 168, 0.25);
-    --lavender-background: #F9F8FD;
-    --surface: #ffffff;
-    --surface-secondary: #F8F7FC;
-    --surface-hover: #F2EFF9;
-    --text-primary: #0F172A;
-    --text-secondary: #64748B;
-    --text-muted: #94A3B8;
-    --link: #5846A8;
-    --border: #E2E8F0;
+    --brand-purple: #059669;
+    --brand-purple-hover: #047857;
+    --brand-purple-light: #ECFDF5;
+    --brand-purple-border: rgba(5, 150, 105, 0.25);
+
+    --primary-purple: #059669;
+    --primary-purple-hover: #047857;
+    --primary-purple-deep: #064E3B;
+    --primary-purple-dark: #022C22;
+    --primary-purple-soft: rgba(5, 150, 105, 0.12);
+    --primary-purple-light: #ECFDF5;
+    --border-purple: rgba(5, 150, 105, 0.25);
+    --lavender-background: #FAFAF9;
+    --surface: #FFFFFF;
+    --surface-secondary: #F5F5F4;
+    --surface-hover: #F0FDF4;
+    --text-primary: #18181B;
+    --text-secondary: #52525B;
+    --text-muted: #71717A;
+    --link: #059669;
+    --border: #E4E4E7;
     --success: #10B981;
     --warning: #F59E0B;
-    --error: #EF4444;
+    --error: #F43F5E;
 
     /* Legacy CSS Variable Aliases */
-    --primary: #5846A8;
-    --primary-hover: #48388d;
-    --background: #FFFFFF;
-    --surface-hover: #F8F7FC;
-    --text: #0F172A;
-    --muted: #64748B;
-    --danger: #EF4444;
+    --primary: #059669;
+    --primary-hover: #047857;
+    --background: #FAFAF9;
+    --text: #18181B;
+    --muted: #71717A;
+    --danger: #F43F5E;
 
     /* Tailwind HSL mappings */
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 240 10% 10%;
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 240 10% 10%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --secondary: 250 30% 96%;
-    --secondary-foreground: 258 45% 20%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 258 45% 47%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 258 45% 47%;
+    --popover-foreground: 240 10% 10%;
+    --secondary: 160 30% 96%;
+    --secondary-foreground: 160 50% 15%;
+    --muted-foreground: 240 5% 45%;
+    --accent: 173 80% 40%;
+    --accent-foreground: 240 10% 10%;
+    --destructive: 346 87% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --input: 240 6% 90%;
+    --ring: 160 84% 39%;
     --radius: 0.75rem;
   }
 
   .dark {
-    /* Matte Obsidian & Warm Amber Design System Tokens */
-    --brand-emerald: #E08738;
-    --brand-purple-hover: #D97706;
-    --brand-purple-light: rgba(245, 158, 11, 0.12);
-    --brand-purple-border: rgba(255, 255, 255, 0.07);
+    /* OmniSocial AI Dark Surface & Emerald / Teal Glow Tokens */
+    --brand-emerald: #10B981;
+    --brand-emerald-hover: #059669;
+    --brand-teal: #14B8A6;
+    --brand-coral: #FB7185;
+    --brand-coral-hover: #F43F5E;
 
-    --brand-purple: #E08738;
-    --brand-purple-hover: #D97706;
-    --brand-purple-light: rgba(245, 158, 11, 0.12);
-    --brand-purple-border: rgba(255, 255, 255, 0.07);
+    --brand-purple: #10B981;
+    --brand-purple-hover: #059669;
+    --brand-purple-light: rgba(16, 185, 129, 0.12);
+    --brand-purple-border: rgba(255, 255, 255, 0.08);
 
-    --primary-purple: #E08738;
-    --primary-purple-hover: #D97706;
-    --primary-purple-light: #F59E0B;
-    --primary-purple-soft: rgba(224, 135, 56, 0.15);
-    --lavender-background: #0D0D0E;
-    --surface: #17171A;
-    --surface-secondary: #1C1C20;
-    --text-primary: #FFFFFF;
-    --text-secondary: #9CA3AF;
-    --text-muted: #6B7280;
-    --border: rgba(255, 255, 255, 0.07);
-    --border-purple: rgba(224, 135, 56, 0.3);
+    --primary-purple: #10B981;
+    --primary-purple-hover: #059669;
+    --primary-purple-light: #34D399;
+    --primary-purple-soft: rgba(16, 185, 129, 0.15);
+    --lavender-background: #09090B;
+    --surface: #121214;
+    --surface-secondary: #18181B;
+    --text-primary: #F4F4F5;
+    --text-secondary: #A1A1AA;
+    --text-muted: #71717A;
+    --border: rgba(255, 255, 255, 0.08);
+    --border-purple: rgba(16, 185, 129, 0.3);
     --success: #10B981;
     --warning: #F59E0B;
-    --error: #EF4444;
+    --error: #FB7185;
 
-    --primary: #E08738;
-    --primary-hover: #D97706;
-    --background: #0D0D0E;
+    --primary: #10B981;
+    --primary-hover: #059669;
+    --background: #09090B;
     --surface-hover: rgba(255, 255, 255, 0.05);
-    --text: #FFFFFF;
-    --muted: #9CA3AF;
-    --danger: #EF4444;
+    --text: #F4F4F5;
+    --muted: #A1A1AA;
+    --danger: #FB7185;
 
     --foreground: 0 0% 100%;
-    --card: 240 6% 10%;
+    --card: 240 5% 8%;
     --card-foreground: 0 0% 100%;
-    --popover: 240 6% 12%;
+    --popover: 240 5% 10%;
     --popover-foreground: 0 0% 100%;
     --secondary: 240 4% 16%;
     --secondary-foreground: 0 0% 100%;

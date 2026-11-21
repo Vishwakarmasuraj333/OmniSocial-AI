@@ -60,7 +60,7 @@ import {
   PhoneCall,
   Phone,
 } from "lucide-react";
-import { PulseSocialLogo } from "@/components/brand/PulseSocialLogo";
+import { OmniSocialLogo } from "@/components/brand/OmniSocialLogo";
 import { renderPlatformIcon } from "@/components/icons/PlatformIcons";
 import { PostComposerModal } from "@/components/composer/PostComposerModal";
 import { CommandPalette } from "@/components/layout/CommandPalette";
@@ -425,9 +425,9 @@ export function AppLayout({ children }: AppLayoutProps) {
       items: [
         {
           label: "Dashboard",
-          href: "/dashboard",
+          href: "/app",
           icon: LayoutDashboard,
-          match: (p: string) => p === "/dashboard",
+          match: (p: string) => p === "/app" || p === "/dashboard",
         },
       ],
     },
@@ -437,14 +437,20 @@ export function AppLayout({ children }: AppLayoutProps) {
         {
           label: "Posts & Queue",
           icon: FileText,
-          href: "/posts",
+          href: "/app/queue",
           isDropdown: true,
           match: (p: string) =>
             p.startsWith("/posts") ||
+            p.startsWith("/app/publish") ||
+            p.startsWith("/app/calendar") ||
             p.startsWith("/calendar") ||
+            p.startsWith("/app/drafts") ||
             p.startsWith("/drafts") ||
+            p.startsWith("/app/queue") ||
             p.startsWith("/scheduled") ||
+            p.startsWith("/app/published") ||
             p.startsWith("/published") ||
+            p.startsWith("/app/approvals") ||
             p.startsWith("/approvals"),
           children: [
             {
@@ -455,23 +461,23 @@ export function AppLayout({ children }: AppLayoutProps) {
             },
             {
               label: "Published Posts",
-              href: "/posts?filter=PUBLISHED",
+              href: "/app/published",
               icon: CheckCircle2,
-              match: (p: string) => p.includes("filter=PUBLISHED") || p.includes("filter=published"),
+              match: (p: string) => p.startsWith("/app/published") || p.includes("filter=PUBLISHED") || p.includes("filter=published"),
               badge: postStatusCounts.published > 0 ? postStatusCounts.published.toString() : undefined,
             },
             {
-              label: "Scheduled Posts",
-              href: "/posts?filter=SCHEDULED",
+              label: "Scheduled Queue",
+              href: "/app/queue",
               icon: Clock,
-              match: (p: string) => p.includes("filter=SCHEDULED") || p.includes("filter=scheduled"),
+              match: (p: string) => p.startsWith("/app/queue") || p.includes("filter=SCHEDULED") || p.includes("filter=scheduled"),
               badge: postStatusCounts.scheduled > 0 ? postStatusCounts.scheduled.toString() : undefined,
             },
             {
               label: "Drafts",
-              href: "/posts?filter=DRAFT",
+              href: "/app/drafts",
               icon: FileEdit,
-              match: (p: string) => p.startsWith("/drafts") || p.includes("filter=DRAFT") || p.includes("filter=draft"),
+              match: (p: string) => p.startsWith("/app/drafts") || p.startsWith("/drafts") || p.includes("filter=DRAFT") || p.includes("filter=draft"),
               badge: postStatusCounts.drafts > 0 ? postStatusCounts.drafts.toString() : undefined,
             },
             {
@@ -484,16 +490,16 @@ export function AppLayout({ children }: AppLayoutProps) {
             },
             {
               label: "Approvals",
-              href: "/posts?filter=PENDING_APPROVAL",
+              href: "/app/approvals",
               icon: ShieldCheck,
-              match: (p: string) => p.startsWith("/approvals") || p.includes("filter=PENDING_APPROVAL") || p.includes("filter=approvals"),
+              match: (p: string) => p.startsWith("/app/approvals") || p.startsWith("/approvals") || p.includes("filter=PENDING_APPROVAL") || p.includes("filter=approvals"),
               badge: postStatusCounts.approvals > 0 ? postStatusCounts.approvals.toString() : undefined,
             },
             {
               label: "Content Calendar",
-              href: "/calendar",
+              href: "/app/calendar",
               icon: Calendar,
-              match: (p: string) => p.startsWith("/calendar"),
+              match: (p: string) => p.startsWith("/app/calendar") || p.startsWith("/calendar"),
             },
           ],
         },
@@ -504,9 +510,9 @@ export function AppLayout({ children }: AppLayoutProps) {
       items: [
         {
           label: "Inbox",
-          href: "/inbox",
+          href: "/app/inbox",
           icon: MessageSquare,
-          match: (p: string) => p === "/inbox" && !p.includes("tab="),
+          match: (p: string) => (p.startsWith("/app/inbox") || p === "/inbox") && !p.includes("tab="),
           badge: inboxUnreadCount > 0 ? inboxUnreadCount.toString() : undefined,
         },
         {
@@ -537,11 +543,17 @@ export function AppLayout({ children }: AppLayoutProps) {
       ],
     },
     {
-      title: "MARKETING",
+      title: "MARKETING & CAMPAIGNS",
       items: [
         {
+          label: "Campaigns",
+          href: "/app/campaigns",
+          icon: Megaphone,
+          match: (p: string) => p.startsWith("/app/campaigns"),
+        },
+        {
           label: "Social Planner",
-          href: "/social-accounts",
+          href: "/app/accounts",
           icon: Sliders,
           match: (p: string) => p.startsWith("/social-planner") || (p.startsWith("/social-accounts") && !p.includes("action=connect")),
           badge: connectedAccounts.length > 0 ? connectedAccounts.length.toString() : undefined,
@@ -577,9 +589,9 @@ export function AppLayout({ children }: AppLayoutProps) {
       items: [
         {
           label: "Overview",
-          href: "/analytics",
+          href: "/app/analytics",
           icon: BarChart3,
-          match: (p: string) => p === "/analytics" && !p.includes("tab="),
+          match: (p: string) => (p === "/app/analytics" || p === "/analytics") && !p.includes("tab="),
         },
         {
           label: "Post Analytics",
@@ -601,9 +613,9 @@ export function AppLayout({ children }: AppLayoutProps) {
         },
         {
           label: "Reports",
-          href: "/reports",
+          href: "/app/reports",
           icon: PieChart,
-          match: (p: string) => p.startsWith("/reports"),
+          match: (p: string) => p.startsWith("/app/reports") || p.startsWith("/reports"),
         },
       ],
     },
@@ -612,9 +624,9 @@ export function AppLayout({ children }: AppLayoutProps) {
       items: [
         {
           label: "Connected Accounts",
-          href: "/social-accounts",
+          href: "/app/accounts",
           icon: Share2,
-          match: (p: string) => p === "/social-accounts" && !p.includes("action="),
+          match: (p: string) => (p === "/app/accounts" || p === "/social-accounts") && !p.includes("action="),
           badge: connectedAccounts.length > 0 ? connectedAccounts.length.toString() : undefined,
         },
         {
@@ -630,15 +642,15 @@ export function AppLayout({ children }: AppLayoutProps) {
       items: [
         {
           label: "AI Studio",
-          href: "/ai",
+          href: "/app/ai-studio",
           icon: Sparkles,
-          match: (p: string) => p === "/ai",
+          match: (p: string) => p.startsWith("/app/ai-studio") || p === "/ai",
         },
         {
-          label: "Gemini AI",
-          href: "/ai-assistant",
+          label: "Post Composer",
+          href: "/app/publish",
           icon: Wand2,
-          match: (p: string) => p.startsWith("/ai-assistant"),
+          match: (p: string) => p.startsWith("/app/publish") || p.startsWith("/compose") || p.startsWith("/posts/new"),
         },
         {
           label: "Canva",
@@ -648,9 +660,9 @@ export function AppLayout({ children }: AppLayoutProps) {
         },
         {
           label: "Media Library",
-          href: "/media",
+          href: "/app/media",
           icon: Folder,
-          match: (p: string) => p.startsWith("/media"),
+          match: (p: string) => p.startsWith("/app/media") || p.startsWith("/media"),
         },
       ],
     },
@@ -659,21 +671,21 @@ export function AppLayout({ children }: AppLayoutProps) {
       items: [
         {
           label: "Team",
-          href: "/team",
+          href: "/app/team",
           icon: Users,
-          match: (p: string) => p.startsWith("/team"),
+          match: (p: string) => p.startsWith("/app/team") || p.startsWith("/team"),
         },
         {
           label: "Settings",
-          href: "/settings",
+          href: "/app/settings",
           icon: Settings,
-          match: (p: string) => p === "/settings" && !p.includes("tab="),
+          match: (p: string) => (p === "/app/settings" || p === "/settings") && !p.includes("tab="),
         },
         {
           label: "Billing",
-          href: "/billing",
+          href: "/app/billing",
           icon: CreditCard,
-          match: (p: string) => p.startsWith("/billing"),
+          match: (p: string) => p.startsWith("/app/billing") || p.startsWith("/billing"),
         },
       ],
     },
@@ -708,10 +720,10 @@ export function AppLayout({ children }: AppLayoutProps) {
         {/* Brand Monogram Header */}
         <div className="h-16 px-4 flex items-center justify-between border-b border-slate-200 dark:border-white/7">
           <Link
-            href="/dashboard"
+            href="/app"
             className="flex items-center gap-2.5 overflow-hidden group py-1"
           >
-            <PulseSocialLogo size={isSidebarOpen ? "md" : "sm"} variant={isSidebarOpen ? "full" : "icon"} />
+            <OmniSocialLogo size={isSidebarOpen ? "md" : "sm"} variant={isSidebarOpen ? "full" : "icon"} />
           </Link>
 
           {/* Toggle sidebar button (desktop only) */}

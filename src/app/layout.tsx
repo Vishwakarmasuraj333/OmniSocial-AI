@@ -3,11 +3,12 @@ import "./globals.css";
 import { ToastProvider } from "@/components/ui/toast";
 import { BrandProvider } from "@/context/BrandContext";
 import { CookieConsentBanner } from "@/components/consent/CookieConsentBanner";
+import { BRAND_CONFIG } from "@/lib/brand-config";
 
-const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "https://pulsesocial1.vercel.app";
+const siteUrl = process.env.NEXT_PUBLIC_APP_URL || BRAND_CONFIG.appUrl;
 
 export const viewport: Viewport = {
-  themeColor: "#4f46e5",
+  themeColor: "#059669",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -16,25 +17,23 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "SocialPulse — Professional Social Media Management SaaS | Plan, Publish, Monitor & Analyze",
-    template: "%s | SocialPulse",
+    default: `${BRAND_CONFIG.name} — ${BRAND_CONFIG.tagline}`,
+    template: `%s | ${BRAND_CONFIG.name}`,
   },
-  description:
-    "SocialPulse is the unified social media management platform for modern brands and agencies. Plan, create, schedule, publish, monitor, and measure cross-platform social performance from one organized workspace.",
+  description: BRAND_CONFIG.description,
   keywords: [
     "social media management",
-    "social media scheduler",
+    "AI social media scheduler",
     "social inbox",
-    "social listening",
-    "brand monitoring",
-    "social media analytics",
-    "multi-brand workspace",
     "content calendar",
-    "SocialPulse",
+    "multi-brand workspace",
+    "OmniSocial AI",
+    "Google Gemini social AI",
+    "social listening",
   ],
-  authors: [{ name: "SocialPulse Engineering Team" }],
-  creator: "SocialPulse",
-  publisher: "SocialPulse",
+  authors: [{ name: `${BRAND_CONFIG.name} Engineering Team` }],
+  creator: BRAND_CONFIG.name,
+  publisher: BRAND_CONFIG.name,
   formatDetection: {
     email: false,
     address: false,
@@ -43,11 +42,10 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/icon.svg", type: "image/svg+xml" },
-      { url: "/PulseSocial_1024x1024_App_Icon.png", sizes: "1024x1024", type: "image/png" },
     ],
     shortcut: "/icon.svg",
     apple: [
-      { url: "/PulseSocial_1024x1024_App_Icon.png", sizes: "180x180", type: "image/png" },
+      { url: "/icon.svg", sizes: "180x180", type: "image/svg+xml" },
     ],
   },
   manifest: "/manifest.json",
@@ -55,24 +53,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: siteUrl,
-    siteName: "SocialPulse",
-    title: "SocialPulse — Your Entire Social Media Workflow. One Powerful Platform.",
-    description:
-      "Plan, create, schedule, publish, monitor, and measure your social media performance from one organized workspace.",
-    images: [
-      {
-        url: `${siteUrl}/PulseSocial_1024x1024_App_Icon.png`,
-        width: 1024,
-        height: 1024,
-        alt: "SocialPulse Professional Social Media Management Platform",
-      },
-    ],
+    siteName: BRAND_CONFIG.name,
+    title: `${BRAND_CONFIG.name} — ${BRAND_CONFIG.tagline}`,
+    description: BRAND_CONFIG.description,
   },
   twitter: {
     card: "summary_large_image",
-    title: "SocialPulse — Your Entire Social Media Workflow. One Powerful Platform.",
-    description:
-      "Plan, create, schedule, publish, monitor, and measure your social media performance from one organized workspace.",
+    title: `${BRAND_CONFIG.name} — ${BRAND_CONFIG.tagline}`,
+    description: BRAND_CONFIG.description,
     images: [`${siteUrl}/PulseSocial_1024x1024_App_Icon.png`],
     creator: "@SocialPulseHQ",
   },

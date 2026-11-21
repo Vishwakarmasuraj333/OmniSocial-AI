@@ -1,146 +1,118 @@
-# PulseSocial — Enterprise Social Media Management SaaS Platform
+# OmniSocial AI — Next-Generation AI Social Media Management Platform
 
 [![Next.js 15](https://img.shields.io/badge/Next.js-15-black?logo=next.js)](https://nextjs.org/)
 [![React 19](https://img.shields.io/badge/React-19-blue?logo=react)](https://react.dev/)
 [![TypeScript 5](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript)](https://www.typescriptlang.org/)
+[![Google Gemini AI](https://img.shields.io/badge/AI-Google%20Gemini%202.5-4285F4?logo=google)](https://aistudio.google.com/)
 [![Prisma ORM](https://img.shields.io/badge/Prisma-6-2D3748?logo=prisma)](https://www.prisma.io/)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind-CSS-38B2AC?logo=tailwind-css)](https://tailwindcss.com/)
 [![Security: AES-256-GCM](https://img.shields.io/badge/Security-AES--256--GCM-green)](https://en.wikipedia.org/wiki/Galois/Counter_Mode)
 
-PulseSocial is a brand-new standalone full-stack social media management SaaS platform built with the Next.js App Router, Prisma ORM, and comprehensive OAuth integrations. Inspired by enterprise UX patterns (such as Zoho Social), it delivers high visual polish, zero promotional spam, real OAuth state + PKCE protection, and hardware-grade AES-256-GCM token encryption.
+**OmniSocial AI** is a production-grade, enterprise multi-tenant social media management SaaS platform engineered for brands, agencies, and high-growth creator teams to compose, schedule, publish, analyze, and monitor cross-network campaigns from one unified workspace.
 
 ---
 
-## Key Features
+## 🌟 Key Features
 
-1. **Authentication & Email OTP Flow**:
-   - Secure signup, login, password recovery, and email verification via 6-digit hashed OTPs.
-   - Configurable SMTP delivery with rate-limiting, resend cooldowns, and brute-force protection.
-2. **Dedicated Post-Login First Experience (`/onboarding/socials`)**:
-   - Clean, ad-free "Get started by setting up a Brand" interface.
-   - 13 social platform selector icons bar (Facebook, Instagram, LinkedIn, X, YouTube, TikTok, Pinterest, Google Business, Mastodon, Threads, Telegram, WhatsApp, Snapchat).
-   - Dedicated Instagram selection modal: "Connect via Instagram [NEW]" vs "Connect via Facebook".
-   - Celebratory Brand Connection screen with large avatar, verified checkmark badge, and handle.
-   - Team Invitation modal with role assignment, channel access limits, and approver privileges.
-3. **Studio Post Composer (`/posts/new`)**:
-   - Multi-channel simultaneous authoring with per-platform character limits.
-   - Real-time native live preview simulators for Instagram, X (Twitter), LinkedIn, and Facebook.
-   - Media attachments and AI copilot integration.
-   - Publishing lifecycle: Draft, Queue, Scheduled, Publishing, Published, Failed with retry tracking.
-4. **Content Calendar (`/calendar`)**:
-   - Month & Week views with color-coded status badges and detailed inspection drawers.
-5. **Unified Social Inbox (`/inbox`)**:
-   - Two-pane thread view for comments, direct messages, and brand mentions with instant reply capabilities.
-6. **Cross-Network Analytics & Reports (`/analytics`, `/reports`)**:
-   - Live telemetry, reach and impression curves, CSV export, and executive summaries.
-7. **Security & Governance**:
-   - AES-256-GCM token vault.
-   - Never collects or stores third-party passwords.
-   - Structured audit logging and inbound webhook signature validation.
+1. **Unified Social Media Workspace (`/app`)**:
+   - Manage multiple brands and organizations from one unified workspace switcher.
+   - Real-time connected account summary, upcoming scheduled posts, and performance trends.
+
+2. **13 Official Social Media Platform Integrations**:
+   - **Instagram Professional**: Feed posts, Reels, Carousels, comments, insights.
+   - **Facebook Pages**: Page publishing, video, carousel, engagement metrics.
+   - **YouTube**: Channels, Shorts, long-form video, video telemetry.
+   - **LinkedIn**: Profiles and Organization pages, PDF carousels, text & video.
+   - **X (Twitter)**: Tweets, threads, media upload, DM monitoring.
+   - **TikTok**: Direct video publishing via Content Posting API.
+   - **Pinterest**: Pins, video Pins, board selection.
+   - **Threads**: Official Meta Threads API text, images, and video threads.
+   - **Google Business Profile**: Location updates, offers, events, and reviews.
+   - **WhatsApp Business**: Cloud API customer communications and template broadcasts.
+   - **Telegram**: Bot API channel broadcasting and group announcements.
+   - **Reddit**: Subreddit post authoring, flairs, and link sharing.
+   - **Snapchat**: Creative Kit and Marketing API video workflows.
+
+3. **Advanced AI Content Studio (`/app/ai-studio`)**:
+   - Integrated with server-side **Google Gemini** (`@google/genai`).
+   - 8-step creation workflow: Goal Selection → Target Channels → Topic Context → Persona Tuning → AI Synthesis → Section Refinement → Platform Previews → Send to Composer / Save Draft.
+   - 17 generation capabilities including viral hooks, tone rewriting, hashtags, alt text, CTAs, and multilingual translation.
+
+4. **Universal Post Composer (`/app/publish`)**:
+   - Multi-platform simultaneous authoring with per-platform character counts.
+   - Pixel-accurate live preview simulators for Instagram, X, LinkedIn, Facebook, YouTube, TikTok, and Pinterest.
+   - Media attachments with aspect ratio validation.
+   - Publishing options: Publish Now, Schedule, Queue, and Submit for Approval.
+
+5. **Content Calendar & Background Scheduler (`/app/calendar`, `/app/queue`)**:
+   - Interactive Month, Week, Day, and List views with drag-and-drop rescheduling.
+   - Durable background job worker (`/api/cron/publisher`) using database-backed idempotency keys and locks.
+
+6. **Unified Social Inbox (`/app/inbox`)**:
+   - Multi-channel thread view for comments, direct messages, and brand mentions with sentiment indicators and saved replies.
+
+7. **Cross-Network Analytics & Reports (`/app/analytics`, `/app/reports`)**:
+   - Audience trends, reach, engagement rates, video views, and downloadable CSV reports based on real connected data.
+
+8. **Team Collaboration & Content Approvals (`/app/team`, `/app/approvals`)**:
+   - Granular RBAC: `OWNER`, `ADMIN`, `MANAGER`, `EDITOR`, `ANALYST`, `VIEWER`.
+   - Multi-tier approval workflows with revision feedback and audit logging.
+
+9. **Security & Governance**:
+   - Hardware-grade **AES-256 GCM** token vault with per-record IVs.
+   - Zero password collection for third-party platforms.
+   - Complete server-side `/admin` command center with tenant management and operational audit logs.
 
 ---
 
-## Quick Start & Installation
+## 🚀 Quick Start & Installation
 
 ### 1. Install Dependencies
 ```bash
-cd pulsesocial
 npm install
 ```
 
-### 2. Configure Environment Variables
+### 2. Generate Prisma Client
+```bash
+npx prisma generate
+```
+
+### 3. Environment Configuration
 Copy `.env.example` to `.env`:
 ```bash
 cp .env.example .env
 ```
-Ensure `ENCRYPTION_KEY` is a 32-byte hex string (64 characters) or secure phrase.
-
-### 3. Initialize Database & Seed
-For instant local testing, PulseSocial is pre-configured with SQLite (`file:./dev.db`).
-```bash
-npx prisma db push
-npx prisma generate
-npx tsx prisma/seed.ts
+Ensure `TOKEN_ENCRYPTION_KEY` is a 64-character hex string and configure your database and Google Gemini API keys:
+```env
+DATABASE_URL="postgresql://user:password@localhost:5432/omnisocial?schema=public"
+AUTH_SECRET="your_32_character_jwt_auth_secret_key_minimum"
+TOKEN_ENCRYPTION_KEY="0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+GEMINI_API_KEY="your_google_gemini_api_key"
 ```
 
-Demo Admin credentials created by the seed:
-- **Email**: `admin@pulsesocial.io`
-- **Password**: `Password123!`
-
-### 4. Run the Development Server
+### 4. Run Development Server
 ```bash
 npm run dev
 ```
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
----
-
-## PostgreSQL & Redis Setup (Production & Docker)
-
-To run with PostgreSQL and Redis, spin up the included `docker-compose.yml`:
-```bash
-docker compose up -d
-```
-Then update `DATABASE_URL` in `.env`:
-```env
-DATABASE_URL="postgresql://pulsesocial:pulsesocial_password@localhost:5432/pulsesocial_db?schema=public"
-```
-Switch `provider = "postgresql"` in `prisma/schema.prisma` (or copy from `prisma/schema.postgresql.prisma`), then run:
-```bash
-npx prisma db push
-npx tsx prisma/seed.ts
-```
-
----
-
-## Social Provider Developer Setup & Redirect URLs
-
-All OAuth redirects use the base URL: `http://localhost:3000` (or your production domain).
-
-### 1. Meta (Facebook Pages & Instagram Professional)
-- Portal: [Meta for Developers](https://developers.facebook.com/)
-- App Type: **Business**
-- Products: **Facebook Login for Business**, **Instagram Graph API**
-- Valid OAuth Redirect URIs:
-  - `http://localhost:3000/api/social/facebook/callback`
-  - `http://localhost:3000/api/social/instagram/callback`
-- Webhook Callback URL:
-  - `http://localhost:3000/api/webhooks/facebook`
-  - Verify Token: configured in `META_WEBHOOK_VERIFY_TOKEN`
-
-### 2. LinkedIn (v2 API & Community Management)
-- Portal: [LinkedIn Developers](https://www.linkedin.com/developers/)
-- Products: **Share on LinkedIn**, **Sign In with LinkedIn using OpenID Connect**
-- Authorized Redirect URLs:
-  - `http://localhost:3000/api/social/linkedin/callback`
-
-### 3. TikTok (Login Kit & Content Posting)
-- Portal: [TikTok for Developers](https://developers.tiktok.com/)
-- Products: **Login Kit**, **Content Posting API**
-- Redirect Domain: `localhost:3000`
-- Redirect URI: `http://localhost:3000/api/social/tiktok/callback`
-
-### 4. X / Twitter (OAuth 2.0 PKCE)
-- Portal: [X Developer Portal](https://developer.x.com/)
-- App Settings: **User authentication settings** -> OAuth 2.0 (Confidential Client / Web App)
-- Callback URL: `http://localhost:3000/api/social/x/callback`
-
-### 5. Google / YouTube Data API v3 & Google Business Profile
-- Portal: [Google Cloud Console](https://console.cloud.google.com/)
-- APIs Enabled: **YouTube Data API v3**, **My Business Account Management API**
-- Authorized Redirect URIs:
-  - `http://localhost:3000/api/social/youtube/callback`
-  - `http://localhost:3000/api/social/google-business/callback`
-
-### 6. Pinterest
-- Portal: [Pinterest Developers](https://developers.pinterest.com/)
-- Redirect URI: `http://localhost:3000/api/social/pinterest/callback`
-
----
-
-## Production Build & Deployment
-
+### 5. Production Build
 ```bash
 npm run build
 npm run start
 ```
+
+---
+
+## 📖 Documentation
+- [Master Architecture & Specification](docs/OMNISOCIAL_MASTER_SPECIFICATION.md)
+- [OAuth & Platform Integration Guide](OAUTH_SETUP_GUIDE.md)
+- [Database Schema & Prisma Models](DATABASE_SCHEMA.md)
+- [Environment Configuration Guide](ENVIRONMENT_SETUP.md)
+- [Production Deployment Guide](DEPLOYMENT_GUIDE.md)
+- [Known Limitations & Policy Boundaries](KNOWN_LIMITATIONS.md)
+
+---
+
+## 🛡️ License & Copyright
+Copyright © 2026 OmniSocial AI Inc. All rights reserved.

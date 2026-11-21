@@ -1,10 +1,10 @@
 import React from "react";
 import { PulseLandingView } from "@/components/marketing/PulseLandingView";
+import { BRAND_CONFIG, getPageTitle } from "@/lib/brand-config";
 
 export const metadata = {
-  title: "SocialPulse — Professional Social Media Management SaaS | Plan, Publish, Monitor & Analyze",
-  description:
-    "SocialPulse is the unified social media management platform for modern brands and agencies. Plan, create, schedule, publish, monitor, and measure cross-platform social performance from one organized workspace.",
+  title: getPageTitle(),
+  description: BRAND_CONFIG.description,
 };
 
 export default function HomePage() {

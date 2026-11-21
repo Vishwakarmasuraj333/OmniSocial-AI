@@ -410,6 +410,31 @@ export const PLATFORM_CAPABILITIES: Record<string, PlatformCapability> = {
     maxCharacterLimit: 5000,
     notes: "Requires Shopify Store Custom App or OAuth credentials (SHOPIFY_API_KEY & SHOPIFY_API_SECRET).",
   },
+  whatsapp: {
+    platform: "whatsapp",
+    displayName: "WhatsApp Business",
+    apiVersion: "Cloud API v19.0",
+    status: "CONFIGURATION REQUIRED",
+    CONNECTED: false,
+    TOKEN_VALID: false,
+    ACCOUNT_SYNCED: false,
+    PUBLISHING_SUPPORTED: true,
+    APPROVAL_REQUIRED: true,
+    PUBLISHING_APPROVED: false,
+    PUBLIC_PUBLISHING_ALLOWED: false,
+    MEDIA_UPLOAD_SUPPORTED: true,
+    REAL_API_VERIFIED: true,
+    canPublish: true,
+    canLike: false,
+    canComment: false,
+    canShare: false,
+    canSave: false,
+    canSchedule: true,
+    supportedMedia: ["IMAGE", "VIDEO", "DOCUMENT"],
+    maxCharacterLimit: 4096,
+    unsupportedMessage: "Requires Meta Business Verification and WhatsApp Cloud API Phone Number credentials.",
+    notes: "Requires WHATSAPP_PHONE_NUMBER_ID and WHATSAPP_ACCESS_TOKEN or Meta Embedded Signup.",
+  },
 };
 
 export function getPlatformCapability(
@@ -437,6 +462,7 @@ export function getPlatformCapability(
   else if (norm.includes("bluesky")) base = { ...PLATFORM_CAPABILITIES.bluesky };
   else if (norm.includes("snapchat")) base = { ...PLATFORM_CAPABILITIES.snapchat };
   else if (norm.includes("shopify")) base = { ...PLATFORM_CAPABILITIES.shopify };
+  else if (norm.includes("whatsapp")) base = { ...PLATFORM_CAPABILITIES.whatsapp };
   else {
     base = {
       platform: norm,
